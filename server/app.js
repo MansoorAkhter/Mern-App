@@ -2,6 +2,7 @@ const dotenv = require("dotenv");
 const express = require("express");
 const app = express();
 
+
 //env file import
 dotenv.config({ path: "./config.env" });
 
@@ -9,6 +10,7 @@ dotenv.config({ path: "./config.env" });
 require('./db/conn');
 
 app.use(express.json());
+
 
 //Link Router File
 app.use(require('./router/auth'));

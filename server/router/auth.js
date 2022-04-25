@@ -1,10 +1,17 @@
 const express = require("express");
+const app = express();
 const router = express.Router();
 const bycrpt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const cors = require('cors')
+
+
+app.use(cors());
+
 
 require('../db/conn');
 const User = require("../model/userSchema");
+
 
 router.get("/", (req, res) => {
   res.send("Hello from Router.Js")
@@ -43,10 +50,10 @@ router.get("/", (req, res) => {
 router.post('/register', async (req, res) => {
 
   //get data using object destructuring
-  const { name, email, password } = req.body;
+  const { name, email, profession, phone, password } = req.body;
 
   //user validation  
-  if (!name || !email || !password) {
+  if (!name || !email || !profession || !phone || !password) {
     return res.status(422).json({ error: "Plz filled field" });
   }
 
@@ -60,7 +67,7 @@ router.post('/register', async (req, res) => {
     } else {
       //If key & value both are same then just type key >>> ES6 method
       //validation from schema --- if user not register then create new user
-      const user = new User({ name, email, password });
+      const user = new User({ name, email, profession, phone, password });
 
       //data save in collection on database
       await user.save();
