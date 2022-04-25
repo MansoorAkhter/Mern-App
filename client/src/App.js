@@ -6,19 +6,20 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
 import Signup from "./components/Signup";
-import './App.css';
+import ErrorPage from "./components/ErrorPage";
+import "./App.css";
 
 const App = () => {
   return (
     <div>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />}/>
-          <Route path="/about" element={<About />}/>
-            <Route path="/contact" element={<Contact />}/>
-              <Route path="/login" element={<Login />}/>
-                <Route path="/signup" element={<Signup />}/>
-           
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>
   );
