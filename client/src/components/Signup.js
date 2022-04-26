@@ -24,7 +24,7 @@ const Signup = () => {
 
     const { name, email, profession, phone, password, } = user;
 
-    // const res = fetch("/register", {
+    // const data = await fetch("/register", {
     //   method: "POST",
     //   headers: {
     //     "Content-Type": "application/json",
