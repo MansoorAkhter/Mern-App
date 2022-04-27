@@ -1,27 +1,41 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from "react-router-dom";
-// import axios from 'axios';
+import axios from 'axios';
 
 
 const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const navigate = useNavigate();
 
 
   const loginUser = async (e) => {
     e.preventDefault();
 
-    const res = await fetch("/login", {
-      method: "POST",
+    // const res = await fetch("/login", {
+    //   method: "POST",
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({ email, password })
+    // });
+
+
+    const res = await axios.post('http://localhost:4000/login', {
+      email: email,
+      password: password
+    }, {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email, password })
-    });
+      // body: JSON.stringify({ email, password })
+    })
 
-    const data = res.json();
+    const data = res;
+
+    console.log(res)
 
     if (res.status === 400 || !data) {
       window.alert("Invalid email or password");
@@ -40,7 +54,7 @@ const Login = () => {
           <div className="signup-form">
             <h2 className="form-title">Login</h2>
 
-            <form className="userform">
+            <form method='POST' className="userform">
 
               <input type="email" placeholder="Your Email" name='email' id='email' autoComplete='off' value={email} onChange={(e) => setEmail(e.target.value)} />
 

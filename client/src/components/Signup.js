@@ -24,17 +24,10 @@ const Signup = () => {
 
     const { name, email, profession, phone, password, } = user;
 
-    // const data = await fetch("/register", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     name, email, profession, phone, password,
-    //   })
-    // });
 
-    const data = await axios.post('/register', {
+    console.log("button hit")
+
+    const data = await axios.post('http://localhost:4000/register', {
       name: name,
       email: email,
       profession: profession,
@@ -45,6 +38,8 @@ const Signup = () => {
         'Content-Type': 'application/json',
       }
     })
+
+    console.log(data)
 
     if (data.status === 422 || !data) {
       window.alert("Invalid Registration");

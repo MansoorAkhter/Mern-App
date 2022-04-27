@@ -54,7 +54,7 @@ router.post('/register', async (req, res) => {
 
   //user validation  
   if (!name || !email || !profession || !phone || !password) {
-    return res.status(422).json({ error: "Plz filled field" });
+    return res.status('422').json({ error: "Plz filled field"});
   }
 
   try {
@@ -85,7 +85,7 @@ router.post('/register', async (req, res) => {
 
 //LOGIN
 router.post('/login', async (req, res) => {
-  // console.log(req.body)
+  console.log(req.body)
   // res.json({message: 'waoooo'})
 
 
@@ -108,7 +108,7 @@ router.post('/login', async (req, res) => {
       console.log(token);
 
       //Store Token in Cookie
-      res.cookie('jwtoken', 'userToken');
+      // res.cookie('jwtoken', 'userToken');
 
 
       // res.cookie('jwtoken', token, {

@@ -1,6 +1,7 @@
 const dotenv = require("dotenv");
 const express = require("express");
 const app = express();
+const cors = require('cors');
 
 
 //env file import
@@ -9,6 +10,9 @@ dotenv.config({ path: "./config.env" });
 //require  database from config.env
 require('./db/conn');
 
+
+app.use(cors());
+
 app.use(express.json());
 
 
@@ -16,7 +20,9 @@ app.use(express.json());
 app.use(require('./router/auth'));
 
 //port using from config.env
-const port = process.env.PORT;
+// const port = process.env.PORT;
+
+const port = 4000;
 
 
 //MiddleWare
